@@ -2,7 +2,6 @@ package com.example.wiggles.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-@Parcelize
 class Dog(
     val id: Int,
     val name: String,
@@ -14,4 +13,4 @@ class Dog(
     val image: Int,
     val about: String,
     val owner: Owner
-) : Parcelable
+)
