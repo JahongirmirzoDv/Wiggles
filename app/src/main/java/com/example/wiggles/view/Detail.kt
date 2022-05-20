@@ -83,7 +83,7 @@ fun DetailsView(dog: Dog) {
                     Text(
                         text = dog.name,
                         modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
-                        color = text,
+                        color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.bodyLarge
                     )
@@ -104,7 +104,7 @@ fun DetailsView(dog: Dog) {
                         Text(
                             text = dog.location,
                             modifier = Modifier.padding(8.dp, 12.dp, 12.dp, 0.dp),
-                            color = text,
+                            color = MaterialTheme.colorScheme.primary,
                             style = MaterialTheme.typography.displaySmall
                         )
                     }
@@ -114,7 +114,7 @@ fun DetailsView(dog: Dog) {
                     Text(
                         text = "12 mins ago",
                         modifier = Modifier.padding(0.dp, 0.dp, 12.dp, 0.dp),
-                        color = text,
+                        color = MaterialTheme.colorScheme.primary,
                         style = MaterialTheme.typography.displaySmall
                     )
                 }
@@ -153,7 +153,7 @@ fun DetailsView(dog: Dog) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp, 0.dp, 16.dp, 0.dp),
-                color = text,
+                color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.displaySmall,
                 textAlign = TextAlign.Start
             )
@@ -200,13 +200,13 @@ fun DetailsView(dog: Dog) {
                     Text(
                         text = "David Berlin",
                         style = MaterialTheme.typography.displayMedium,
-                        color = text
+                        color = MaterialTheme.colorScheme.primary
                     )
                     Spacer(modifier = Modifier.height(15.dp))
                     Text(
                         text = "Socialist & Developer",
                         style = MaterialTheme.typography.displaySmall,
-                        color = text
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
                 IconButton(
@@ -262,7 +262,7 @@ fun InfoCard(title: String, value: String) {
             Text(
                 text = value,
                 modifier = Modifier.fillMaxWidth(),
-                color = text,
+                color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.displaySmall,
                 fontWeight = FontWeight.W600,
                 textAlign = TextAlign.Center

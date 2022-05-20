@@ -80,7 +80,7 @@ fun DogItem(
             .height(150.dp)
             .padding(top = 10.dp)
             .clip(RoundedCornerShape(25.dp))
-            .background(card)
+            .background(MaterialTheme.colorScheme.surface)
             .clickable {
                 onItemClicked(dog)
             },
@@ -109,7 +109,7 @@ fun DogItem(
                 Text(
                     text = dog.name,
                     style = MaterialTheme.typography.displayMedium,
-                    color = text
+                    color = MaterialTheme.colorScheme.primary
                 )
                 Text(
                     text = buildString {
@@ -118,7 +118,7 @@ fun DogItem(
                         append(dog.gender)
                     },
                     style = MaterialTheme.typography.displaySmall,
-                    color = text
+                    color = MaterialTheme.colorScheme.primary
                 )
                 Row {
                     Icon(
@@ -128,7 +128,7 @@ fun DogItem(
                     Text(
                         text = dog.location,
                         style = MaterialTheme.typography.displaySmall,
-                        color = text,
+                        color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(start = 8.dp)
                     )
                 }
@@ -145,7 +145,7 @@ fun DogItem(
                         .width(65.dp)
                         .height(30.dp)
                         .clip(RoundedCornerShape(80.dp))
-                        .background(if (dog.gender == "Male") miniCard else miniCardRed),
+                        .background(if (dog.gender == "Male") MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.tertiary),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
@@ -157,7 +157,7 @@ fun DogItem(
                 Text(
                     text = dog.location,
                     style = MaterialTheme.typography.displaySmall,
-                    color = text
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
         }

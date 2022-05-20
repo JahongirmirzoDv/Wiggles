@@ -1,5 +1,7 @@
 package com.example.wiggles.components
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -10,20 +12,25 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.wiggles.R
 import com.example.wiggles.ui.theme.text
+import com.example.wiggles.vm.ThemeViewModel
 
 @Composable
-fun TopBar(navController: NavHostController, iconsBar: Boolean, modifier: Modifier = Modifier) {
+fun TopBar(navController: NavHostController, iconsBar: Boolean, modifier: Modifier = Modifier, themeViewModel: ThemeViewModel = viewModel()) {
     var image by remember {
         mutableStateOf(false)
     }
+
+    val theme: String by themeViewModel.theme.observeAsState("")
     if (!iconsBar) {
         Column {
             Row(
@@ -41,12 +48,12 @@ fun TopBar(navController: NavHostController, iconsBar: Boolean, modifier: Modifi
                     Text(
                         text = "Hey Spikey",
                         style = MaterialTheme.typography.bodyLarge,
-                        color = text
+                        color = MaterialTheme.colorScheme.primary
                     )
                     Text(
                         text = "Adopt a new friend near you!",
                         style = MaterialTheme.typography.bodySmall,
-                        color = text
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
                 Column(
@@ -57,16 +64,14 @@ fun TopBar(navController: NavHostController, iconsBar: Boolean, modifier: Modifi
                 ) {
                     IconButton(onClick = {
                         image = !image
-//                navController.navigate(
-//                    route = Screen.DetailScreen.withArgs(id= "1",name = "dog", location = "tashkent")
-//                )
+                        themeViewModel.onThemeChanged(theme)
                     }) {
                         Icon(
                             painter = painterResource(id = if (image) R.drawable.on else R.drawable.off),
                             contentDescription = "",
                             modifier = Modifier
                                 .size(24.dp),
-                            tint = text
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
@@ -75,7 +80,7 @@ fun TopBar(navController: NavHostController, iconsBar: Boolean, modifier: Modifi
             Text(
                 text = "Nearby results",
                 style = MaterialTheme.typography.bodySmall,
-                color = text
+                color = MaterialTheme.colorScheme.primary
             )
         }
     } else {
@@ -95,7 +100,9 @@ fun TopBar(navController: NavHostController, iconsBar: Boolean, modifier: Modifi
                     modifier = modifier
                 )
             }
-            IconButton(onClick = { image = !image }) {
+            IconButton(onClick = {
+                image = !image
+            }) {
                 Icon(
                     imageVector = if (image) Icons.Filled.Favorite else Icons.Outlined.Favorite,
                     contentDescription = "",
